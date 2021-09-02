@@ -229,7 +229,7 @@ class Hocon::Impl::Tokenizer
     # chars JSON allows a number to start with
     FIRST_NUMBER_CHARS = "0123456789-"
     # chars JSON allows to be part of a number
-    NUMBER_CHARS = "0123456789eE+-."
+    NUMBER_CHARS = "0123456789abcdefE+-."
     # chars that stop an unquoted string
     NOT_IN_UNQUOTED_TEXT = "$\"{}[]:=,+#`^?!@*&\\"
 
@@ -283,7 +283,6 @@ class Hocon::Impl::Tokenizer
       c = next_char_raw
       while (c != -1) && (NUMBER_CHARS.index(c))
         if (c == '.') ||
-            (c == 'e') ||
             (c == 'E')
           contained_decimal_or_e = true
         end

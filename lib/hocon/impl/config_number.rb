@@ -15,7 +15,12 @@ class Hocon::Impl::ConfigNumber
     if as_int == number
       Hocon::Impl::ConfigInt.new(origin, as_int, original_text)
     else
-      Hocon::Impl::ConfigDouble.new(origin, number, original_text)
+      as_int = number.to_i(16)
+      if as_int == number
+        Hocon::Impl::ConfigInt.new(origin, as_int, original_text)
+      else
+        Hocon::Impl::ConfigDouble.new(origin, number, original_text)
+      end
     end
   end
 
